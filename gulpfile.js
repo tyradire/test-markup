@@ -73,8 +73,8 @@ async function clean() {
 }
 
 function watching() {
-  watch(['src/js/script.js', 'src/components/**/*.js'], scripts)
-  watch(['src/styles/style.scss', 'src/components/**/*.+(scss|sass)'], styles).on(
+  watch(['src/js/index.js', 'src/components/**/*.js'], scripts)
+  watch(['src/styles/index.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
     'change',
     browserSync.reload
   )
