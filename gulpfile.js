@@ -23,7 +23,7 @@ function browsersync() {
 }
 
 function styles() {
-  return src('src/styles/index.+(scss|sass)')
+  return src('src/app/index.+(scss|sass)')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({ grid: true, overrideBrowserslist: ['last 10 version'] }))
     .pipe(gcmq())
@@ -32,7 +32,7 @@ function styles() {
 }
 
 function scripts() {
-  return src('src/scripts/index.js')
+  return src('src/app/index.js')
     .pipe(
       include({
         includePaths: 'src/components/**/',
@@ -73,8 +73,8 @@ async function clean() {
 }
 
 function watching() {
-  watch(['src/scripts/index.js', 'src/components/**/*.js'], scripts)
-  watch(['src/styles/index.+(scss|sass)', 'src/core/ui/**/*.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
+  watch(['src/app/index.js', 'src/components/**/*.js'], scripts)
+  watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
     'change',
     browserSync.reload
   )
