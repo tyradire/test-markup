@@ -1,5 +1,7 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 
+let stageDirname = 'public';
+
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq = require('gulp-group-css-media-queries');
@@ -13,7 +15,7 @@ const include = require('gulp-include');
 function browsersync() {
   browserSync.init({
     server: {
-      baseDir: 'public/',
+      baseDir: `${stageDirname}/`,
       serveStaticOptions: {
         extensions: ['html'],
       },
@@ -32,7 +34,7 @@ function styles() {
       overrideBrowserslist: ['last 10 version'],
     }))
     .pipe(gcmq())
-    .pipe(dest('public/css/'))
+    .pipe(dest(`${stageDirname}/css/`))
     .pipe(browserSync.stream())
 }
 
@@ -42,25 +44,25 @@ function scripts() {
     .pipe(babel({
       presets: ['@babel/env'],
     }))
-    .pipe(dest('public/js/'))
+    .pipe(dest(`${stageDirname}/js/`))
     .pipe(browserSync.stream())
 }
 
 function pages() {
   return src('src/pages/*.html')
     .pipe(include({ hardFail: true }))
-    .pipe(dest('public/'))
+    .pipe(dest(`${stageDirname}/`))
     .pipe(browserSync.reload({ stream: true, }))
 }
 
 function copyFonts() {
   return src('src/core/assets/fonts/**/*')
-    .pipe(dest('public/assets/fonts/'))
+    .pipe(dest(`${stageDirname}//assets/fonts/`))
 }
 
 function copyImages() {
   return src('src/core/assets/media/**/*')
-    .pipe(dest('public/assets/media/'))
+    .pipe(dest(`${stageDirname}/assets/media/`))
 }
 
 async function copyResources() {
@@ -69,7 +71,7 @@ async function copyResources() {
 }
 
 async function clean() {
-  return del.sync('public/', { force: true })
+  return del.sync(`${stageDirname}/`, { force: true })
 }
 
 function watching() {
@@ -84,6 +86,12 @@ function watching() {
   )
 }
 
+function setDevStage(finishTask) {
+  stageDirname = 'dev';
+
+  finishTask();
+};
+
 exports.browsersync = browsersync
 exports.clean = clean
 exports.scripts = scripts
@@ -91,15 +99,18 @@ exports.styles = styles
 exports.pages = pages
 exports.copyResources = copyResources
 
-exports.default = parallel(
-  clean,
-  styles,
-  scripts,
-  copyResources,
-  pages,
-  browsersync,
-  watching,
-)
+exports.default = series(
+  setDevStage,
+  parallel(
+    clean,
+    styles,
+    scripts,
+    copyResources,
+    pages,
+    browsersync,
+    watching,
+  ),
+);
 
 exports.build = series(
   clean,
