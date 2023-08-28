@@ -9,11 +9,11 @@ const gcmq = require('gulp-group-css-media-queries');
 const babel = require('gulp-babel');
 
 const del = require('del');
-const browserSync = require('browser-sync').create();
+const localServer = require('browser-sync').create();
 const include = require('gulp-include');
 
-function browsersync() {
-  browserSync.init({
+function upLocalServer() {
+  localServer.init({
     server: {
       baseDir: `${stageDirname}/`,
       serveStaticOptions: {
@@ -35,7 +35,7 @@ function styles() {
     }))
     .pipe(gcmq())
     .pipe(dest(`${stageDirname}/css/`))
-    .pipe(browserSync.stream())
+    .pipe(localServer.stream())
 }
 
 function scripts() {
@@ -45,14 +45,14 @@ function scripts() {
       presets: ['@babel/env'],
     }))
     .pipe(dest(`${stageDirname}/js/`))
-    .pipe(browserSync.stream())
+    .pipe(localServer.stream())
 }
 
 function pages() {
   return src('src/pages/*.html')
     .pipe(include({ hardFail: true }))
     .pipe(dest(`${stageDirname}/`))
-    .pipe(browserSync.reload({ stream: true, }))
+    .pipe(localServer.reload({ stream: true, }))
 }
 
 function copyFonts() {
@@ -78,11 +78,11 @@ function watching() {
   watch(['src/app/index.js', 'src/components/**/*.js'], scripts)
   watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
     'change',
-    browserSync.reload
+    localServer.reload
   )
   watch(['src/pages/*.html', 'src/components/**/*.html'], pages).on(
     'change',
-    browserSync.reload
+    localServer.reload
   )
 }
 
@@ -92,7 +92,7 @@ function setDevStage(finishTask) {
   finishTask();
 };
 
-exports.browsersync = browsersync
+exports.localServer = localServer
 exports.clean = clean
 exports.scripts = scripts
 exports.styles = styles
@@ -107,7 +107,7 @@ exports.default = series(
     scripts,
     copyResources,
     pages,
-    browsersync,
+    upLocalServer,
     watching,
   ),
 );
