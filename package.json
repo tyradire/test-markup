@@ -1,0 +1,29 @@
+{
+  "name": "bitrix-markup-stub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spiks/bitrix-markup-stub.git"
+  },
+  "author": "Liza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spiks/bitrix-markup-stub/issues"
+  },
+  "homepage": "https://github.com/spiks/bitrix-markup-stub#readme",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-include": "^2.4.1",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.66.1"
+  }
+}
