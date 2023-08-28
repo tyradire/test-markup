@@ -1,8 +1,10 @@
-const { src, dest, parallel, series, watch } = require('gulp')
+const { src, dest, parallel, series, watch } = require('gulp');
 
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq = require('gulp-group-css-media-queries');
+
+const babel = require('gulp-babel');
 
 const del = require('del');
 const browserSync = require('browser-sync').create();
@@ -25,7 +27,10 @@ function browsersync() {
 function styles() {
   return src('src/app/index.+(scss|sass)')
     .pipe(sass().on('error', sass.logError))
-    .pipe(autoprefixer({ grid: true, overrideBrowserslist: ['last 10 version'] }))
+    .pipe(autoprefixer({
+      grid: true,
+      overrideBrowserslist: ['last 10 version'],
+    }))
     .pipe(gcmq())
     .pipe(dest('public/css/'))
     .pipe(browserSync.stream())
@@ -33,22 +38,17 @@ function styles() {
 
 function scripts() {
   return src('src/app/index.js')
-    .pipe(
-      include({
-        includePaths: 'src/components/**/',
-      })
-    )
+    .pipe(include({ hardFail: true }))
+    .pipe(babel({
+      presets: ['@babel/env'],
+    }))
     .pipe(dest('public/js/'))
     .pipe(browserSync.stream())
 }
 
 function pages() {
   return src('src/pages/*.html')
-    .pipe(
-      include({
-        includePaths: 'src/components/**/',
-      })
-    )
+    .pipe(include({ hardFail: true }))
     .pipe(dest('public/'))
     .pipe(browserSync.reload({ stream: true, }))
 }
@@ -59,8 +59,8 @@ function copyFonts() {
 }
 
 function copyImages() {
-  return src('src/core/assets/images/**/*')
-    .pipe(dest('public/assets/images/'))
+  return src('src/core/assets/media/**/*')
+    .pipe(dest('public/assets/media/'))
 }
 
 async function copyResources() {

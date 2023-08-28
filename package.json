@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/spiks/bitrix-markup-stub#readme",
   "devDependencies": {
+    "@babel/core": "7.22.11",
+    "@babel/preset-env": "7.22.10",
     "browser-sync": "^2.29.3",
     "del": "^6.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "8.0.0",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-include": "^2.4.1",
     "gulp-sass": "^5.1.0",
