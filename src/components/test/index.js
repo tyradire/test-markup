@@ -1,1 +1,3 @@
-alert('f');
+document.addEventListener('DOMContentLoaded', () => {
+  alert('hh')
+});

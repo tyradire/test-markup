@@ -1,7 +1,7 @@
 .DS_Store
 .idea
 .vscode
-package-lock.json
 /node_modules/
 /.convert/
 /.temp_cache/
+/dev/
