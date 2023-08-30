@@ -65,9 +65,15 @@ function copyImages() {
     .pipe(dest(`${stageDirname}/assets/media/`))
 }
 
+function copyVendors() {
+  return src('src/core/vendors/**/*')
+    .pipe(dest(`${stageDirname}/vendors/`))
+}
+
 async function copyResources() {
   copyFonts()
   copyImages()
+  copyVendors()
 }
 
 async function clean() {
