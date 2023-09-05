@@ -81,7 +81,7 @@ async function clean() {
 }
 
 function watching() {
-  watch(['src/app/index.js', 'src/components/**/*.js'], scripts)
+  watch(['src/app/index.js', 'src/components/**/*.js', 'src/core/components/**/*.js'], scripts)
   watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
     'change',
     localServer.reload
