@@ -12,6 +12,10 @@ const del = require('del');
 const localServer = require('browser-sync').create();
 const include = require('gulp-include');
 
+const svgSpritesBuilder = require('gulp-svg-sprite');
+const cheerio = require('gulp-cheerio');
+const plumber = require('gulp-plumber');
+
 function upLocalServer() {
   localServer.init({
     server: {
@@ -70,6 +74,62 @@ function copyVendors() {
     .pipe(dest(`${stageDirname}/vendors/`))
 }
 
+const extendedSvgSpritesBuilder = (mode) => {
+  return (cb) => {
+    const pipeline = src('src/core/assets/icons/**/*.svg')
+    if (mode === 'clean') {
+      pipeline
+        .pipe(cheerio({
+          run($) {
+            $('[fill]').removeAttr('fill');
+            $('[stroke]').removeAttr('stroke');
+            $('[style]').removeAttr('style');
+          },
+          parserOptions: { xmlMode: true },
+        }))
+        .pipe(plumber())
+    }
+
+    pipeline
+      .pipe(svgSpritesBuilder({
+        shape: {
+          dimension: {
+            maxWidth: 48,
+            maxHeight: 48,
+          },
+        },
+        mode: {
+          symbol: {
+            dest: mode,
+            inline: true,
+            sprite: './sprite.svg',
+          },
+        },
+      }))
+      .pipe(plumber())
+      .pipe(dest(`${stageDirname}/assets/icons/`))
+      .on('end', cb)
+      .on('error', cb)
+
+    return pipeline;
+  };
+};
+
+function buildCleanSvgSprites(cb) {
+  return extendedSvgSpritesBuilder('clean')(cb);
+};
+
+function buildDefaultSvgSprites(cb) {
+  return extendedSvgSpritesBuilder('default')(cb);
+};
+
+function buildSvgSprites() {
+  return parallel(
+    buildCleanSvgSprites,
+    buildDefaultSvgSprites,
+  );
+};
+
 async function copyResources() {
   copyFonts()
   copyImages()
@@ -104,6 +164,7 @@ exports.scripts = scripts
 exports.styles = styles
 exports.pages = pages
 exports.copyResources = copyResources
+exports.buildSvgSprites = buildSvgSprites
 
 exports.default = series(
   setDevStage,
@@ -112,6 +173,7 @@ exports.default = series(
     styles,
     scripts,
     copyResources,
+    buildSvgSprites(),
     pages,
     upLocalServer,
     watching,
