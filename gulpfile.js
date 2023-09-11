@@ -82,7 +82,7 @@ const extendedSvgSpritesBuilder = (mode) => {
         .pipe(cheerio({
           run($) {
             $('[fill]').removeAttr('fill');
-            $('[stroke]').removeAttr('stroke');
+            $('[stroke]').attr('stroke', 'currentColor');
             $('[style]').removeAttr('style');
           },
           parserOptions: { xmlMode: true },
