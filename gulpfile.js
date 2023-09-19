@@ -185,6 +185,7 @@ exports.build = series(
   styles,
   scripts,
   copyResources,
+  buildSvgSprites(),
   pages
 )
 
