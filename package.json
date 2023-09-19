@@ -31,6 +31,7 @@
     "gulp-plumber": "^1.2.1",
     "gulp-sass": "^5.1.0",
     "gulp-svg-sprite": "^2.0.3",
+    "hygen": "^6.2.11",
     "sass": "^1.66.1"
   }
 }
