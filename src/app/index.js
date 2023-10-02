@@ -1,1 +1,1 @@
-// =require ../components/test/index.js
+// =require ../core/components/test/index.js
