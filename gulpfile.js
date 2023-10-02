@@ -16,6 +16,8 @@ const svgSpritesBuilder = require('gulp-svg-sprite');
 const cheerio = require('gulp-cheerio');
 const plumber = require('gulp-plumber');
 
+const ghPages = require('gulp-gh-pages');
+
 function upLocalServer() {
   localServer.init({
     server: {
@@ -158,6 +160,12 @@ function setDevStage(finishTask) {
   finishTask();
 };
 
+function deploy() {
+  return src(`./${stageDirname}/**/*`)
+    .pipe(ghPages({ branch: "build" }))
+};
+
+
 exports.localServer = localServer
 exports.clean = clean
 exports.scripts = scripts
@@ -165,6 +173,7 @@ exports.styles = styles
 exports.pages = pages
 exports.copyResources = copyResources
 exports.buildSvgSprites = buildSvgSprites
+exports.deploy = deploy;
 
 exports.default = series(
   setDevStage,
@@ -187,6 +196,16 @@ exports.build = series(
   copyResources,
   buildSvgSprites(),
   pages
+)
+
+exports.deploy = series(
+  clean,
+  styles,
+  scripts,
+  copyResources,
+  buildSvgSprites(),
+  pages,
+  deploy
 )
 
 
