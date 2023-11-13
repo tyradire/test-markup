@@ -17,23 +17,27 @@ const regexObject = new RegExp('\{(.*?)\}');
 for (let field in dataColors) {
   getFiniteValue(dataColors[field], field, '', dataColors);
 }
-// //dimension
-//
+
+//dimension+
 for (let field in dataDimension) {
   getFiniteValue(dataDimension);
 }
-// //space
+
+// space+
 for (let field in dataSpace) {
   getFiniteValue(dataSpace[field], field, '', dataDimension);
 }
-// border
+
+// border+
 for (let field in dataBorder) {
   getFiniteValue(dataBorder[field], field, 'border-radius-', dataBorder);
 }
-//sizes
+
+// sizes+
 for (let field in dataSizes) {
   getFiniteValue(dataSizes, '', 'sizes-', dataDimension);
 }
+
 //margins
 // for (let field in dataMargins) {
 //   getFiniteValue(dataMargins, '', 'margin-', dataDimension);
@@ -114,9 +118,17 @@ function getLink(propertyPath, object, prefix, globalArray) {
   if (regexObject.test(object)) {
     object = object.replace('{', '').replace('}', '').split('.');
 
+
+    for (let i = 0; i < object.length; i++) {
+      if (object[i].includes(object[0]) && i !== 0 || object[0].includes('color')) {
+        object = object.slice(1);
+      }
+    }
+
     object.forEach((item) => {
       array = array[item];
     })
+
     if (regexObject.test(array['$value'])) {
       getLink(propertyPath, array['$value'], prefix, globalArray);
     } else {
@@ -126,7 +138,6 @@ function getLink(propertyPath, object, prefix, globalArray) {
       }
     }
   }
-
 }
 
 function setNotFindVariables(array) {
