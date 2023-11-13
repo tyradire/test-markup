@@ -1,3 +1,3 @@
 document.addEventListener('DOMContentLoaded', () => {
-  alert('hh')
+  console.log('I am test');
 });

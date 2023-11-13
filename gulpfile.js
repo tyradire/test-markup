@@ -6,6 +6,8 @@ const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
 const gcmq = require('gulp-group-css-media-queries');
 
+const pug = require('gulp-pug');
+
 const babel = require('gulp-babel');
 
 const del = require('del');
@@ -52,6 +54,17 @@ function scripts() {
     }))
     .pipe(dest(`${stageDirname}/js/`))
     .pipe(localServer.stream())
+}
+
+function pugMaker() {
+  return src('src/pages/*.pug')
+    .pipe(
+      pug({
+        pretty: true
+      })
+    )
+    .pipe(dest(`${stageDirname}/`))
+    .pipe(localServer.reload({ stream: true, }))
 }
 
 function pages() {
@@ -143,12 +156,12 @@ async function clean() {
 }
 
 function watching() {
-  watch(['src/app/index.js', 'src/components/**/*.js', 'src/core/components/**/*.js'], scripts)
-  watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)', 'src/components/**/*.+(scss|sass)'], styles).on(
+  watch(['src/app/index.js', 'src/core/**/*.js'], scripts)
+  watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)'], styles).on(
     'change',
     localServer.reload
   )
-  watch(['src/pages/*.html', 'src/components/**/*.html'], pages).on(
+  watch(['src/pages/*.pug', 'src/core/**/*.pug'], pugMaker).on(
     'change',
     localServer.reload
   )
