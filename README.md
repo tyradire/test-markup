@@ -24,7 +24,7 @@ gulp deploy
   * открыть папку tokens в терминале и вызвать
   
 ```
-exportTokens.js
+node exportTokens.js
 ```
   * файл с переменными будет собран в lib/scss/
   * если переменные не импортированы в lib/scss/index.scss, импортировать туда
