@@ -1,0 +1,16 @@
+mixin test2(props = { class: [], attrs: {} })
+  -
+    let classes = ['test-2'];
+    let attrs = props.attrs ? props.attrs : {};
+    let title = props.title ? props.title : {};
+
+    if (Array.isArray(props.class)) {
+      props.class.forEach((key) => {
+        classes.push(key);
+      })
+    }
+
+  div(class= classes)&attributes(attrs )
+    h2= title
+
+

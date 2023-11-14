@@ -31,9 +31,14 @@
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-include": "^2.4.1",
     "gulp-plumber": "^1.2.1",
+    "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-svg-sprite": "^2.0.3",
     "hygen": "^6.2.11",
     "sass": "^1.66.1"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.21"
   }
 }
