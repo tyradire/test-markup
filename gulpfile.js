@@ -56,6 +56,7 @@ function scripts() {
     .pipe(localServer.stream())
 }
 
+//If Pug
 function pugMaker() {
   return src('src/pages/*.pug')
     .pipe(
@@ -67,6 +68,7 @@ function pugMaker() {
     .pipe(localServer.reload({ stream: true, }))
 }
 
+//If HTML
 function pages() {
   return src('src/pages/*.html')
     .pipe(include({ hardFail: true }))
@@ -161,6 +163,12 @@ function watching() {
     'change',
     localServer.reload
   )
+
+  watch(['src/pages/*.html', 'src/core/**/*.html'], pages).on(
+    'change',
+    localServer.reload
+  )
+
   watch(['src/pages/*.pug', 'src/core/**/*.pug'], pugMaker).on(
     'change',
     localServer.reload
@@ -178,15 +186,15 @@ function deploy() {
     .pipe(ghPages({ branch: "build" }))
 };
 
-
 exports.localServer = localServer
 exports.clean = clean
 exports.scripts = scripts
 exports.styles = styles
 exports.pages = pages
+exports.pugMaker = pugMaker
 exports.copyResources = copyResources
 exports.buildSvgSprites = buildSvgSprites
-exports.deploy = deploy;
+exports.deploy = deploy
 
 exports.default = series(
   setDevStage,
@@ -196,6 +204,7 @@ exports.default = series(
     scripts,
     copyResources,
     buildSvgSprites(),
+    pugMaker,
     pages,
     upLocalServer,
     watching,
@@ -208,7 +217,8 @@ exports.build = series(
   scripts,
   copyResources,
   buildSvgSprites(),
-  pages
+  pugMaker,
+  pages,
 )
 
 exports.deploy = series(
@@ -217,6 +227,7 @@ exports.deploy = series(
   scripts,
   copyResources,
   buildSvgSprites(),
+  pugMaker,
   pages,
   deploy
 )
