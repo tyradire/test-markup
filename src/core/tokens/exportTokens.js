@@ -3,40 +3,45 @@ const _ = require("lodash");
 let fileOutput = [], tempArray = [];
 
 // Load the exported variables from Figma
-const dataColors = require("./tokens_color.json");
-const dataDimension = require("./tokens_dimension.json");
-const dataSpace = require("./tokens_space.json");
-const dataBorder = require("./tokens_border.json");
-const dataSizes = require("./tokens_sizes.json");
+// const dataColors = require("./tokens_color.json");
+// const dataDimension = require("./tokens_dimension.json");
+// const dataSpace = require("./tokens_space.json");
+// const dataBorder = require("./tokens_border.json");
+// const dataSizes = require("./tokens_sizes.json");
 // const dataMargins = require("./tokens_margin.json");
-
+const dataAll = require("./design.tokens.json");
 // Define the fields that contain colors and their respective Tailwind keywords
 const regexObject = new RegExp('\{(.*?)\}');
 
-// color tokens
-for (let field in dataColors) {
-  getFiniteValue(dataColors[field], field, '', dataColors);
+// all tokens
+for (let field in dataAll) {
+  getFiniteValue(dataAll[field], field, '', dataAll);
 }
 
-//dimension+
-for (let field in dataDimension) {
-  getFiniteValue(dataDimension);
-}
+// // color tokens
+// for (let field in dataColors) {
+//   getFiniteValue(dataColors[field], field, '', dataColors);
+// }
 
-// space+
-for (let field in dataSpace) {
-  getFiniteValue(dataSpace[field], field, '', dataDimension);
-}
+// //dimension+
+// for (let field in dataDimension) {
+//   getFiniteValue(dataDimension);
+// }
 
-// border+
-for (let field in dataBorder) {
-  getFiniteValue(dataBorder[field], field, 'border-radius-', dataBorder);
-}
+// // space+
+// for (let field in dataSpace) {
+//   getFiniteValue(dataSpace[field], field, '', dataDimension);
+// }
 
-// sizes+
-for (let field in dataSizes) {
-  getFiniteValue(dataSizes, '', 'sizes-', dataDimension);
-}
+// // border+
+// for (let field in dataBorder) {
+//   getFiniteValue(dataBorder[field], field, 'border-radius-', dataBorder);
+// }
+
+// // sizes+
+// for (let field in dataSizes) {
+//   getFiniteValue(dataSizes, '', 'sizes-', dataDimension);
+// }
 
 //margins
 // for (let field in dataMargins) {
@@ -119,11 +124,11 @@ function getLink(propertyPath, object, prefix, globalArray) {
     object = object.replace('{', '').replace('}', '').split('.');
 
 
-    for (let i = 0; i < object.length; i++) {
-      if (object[i].includes(object[0]) && i !== 0 || object[0].includes('color')) {
-        object = object.slice(1);
-      }
-    }
+    // for (let i = 0; i < object.length; i++) {
+    //   if (object[i].includes(object[0]) && i !== 0 || object[0].includes('color')) {
+    //     object = object.slice(1);
+    //   }
+    // }
 
     object.forEach((item) => {
       array = array[item];
