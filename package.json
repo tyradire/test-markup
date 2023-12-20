@@ -37,8 +37,5 @@
     "hygen": "^6.2.11",
     "sass": "^1.66.1"
   },
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "lodash": "^4.17.21"
-  }
+  "dependencies": {}
 }
