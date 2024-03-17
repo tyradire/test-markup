@@ -1,29 +1,31 @@
 ## Команды
 
-Стартовая команда 
+Запустить проект
 
 ```
-gulp
+npm run start
 ```
 
 Собрать проект
 
 ```
-gulp build
+npm run build
 ```
 
 Задеплоить проект 
 
 ```
-gulp deploy
+npm run deploy
 ```
-Сборка позволяет использовать как Pug так и ванильный HTML.
+
 
 ## Перегон токенов
   * открыть папку tokens в терминале и вызвать
 ```
 node exportTokens.js
 ```
-  * файл с переменными будет собран в lib/scss/
-  * если переменные не импортированы в lib/scss/index.scss, импортировать туда
-
+  * файл с переменными будет собран в config/scss/_tokens.scss
+  * импортировать переменные в config/scss/index.scss
+```
+@forward "./tokens" as tokens-*;
+```

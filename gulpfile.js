@@ -1,6 +1,6 @@
 const { src, dest, parallel, series, watch } = require('gulp');
 
-let stageDirname = 'public';
+const stageDirname = 'public';
 
 const sass = require('gulp-sass')(require('sass'));
 const autoprefixer = require('gulp-autoprefixer');
@@ -19,6 +19,47 @@ const cheerio = require('gulp-cheerio');
 const plumber = require('gulp-plumber');
 
 const ghPages = require('gulp-gh-pages');
+
+const extendedSvgSpritesBuilder = (mode) => {
+  return (cb) => {
+    const pipeline = src('src/core/assets/icons/**/*.svg')
+    if (mode === 'clean') {
+      pipeline
+        .pipe(cheerio({
+          run($) {
+            $('[fill]').removeAttr('fill');
+            $('[stroke]').attr('stroke', 'currentColor');
+            $('[style]').removeAttr('style');
+          },
+          parserOptions: { xmlMode: true },
+        }))
+        .pipe(plumber())
+    }
+
+    pipeline
+      .pipe(svgSpritesBuilder({
+        shape: {
+          dimension: {
+            maxWidth: 48,
+            maxHeight: 48,
+          },
+        },
+        mode: {
+          symbol: {
+            dest: mode,
+            inline: true,
+            sprite: './sprite.svg',
+          },
+        },
+      }))
+      .pipe(plumber())
+      .pipe(dest(`${stageDirname}/assets/icons/`))
+      .on('end', cb)
+      .on('error', cb)
+
+    return pipeline;
+  };
+};
 
 function upLocalServer() {
   localServer.init({
@@ -91,47 +132,6 @@ function copyVendors() {
     .pipe(dest(`${stageDirname}/vendors/`))
 }
 
-const extendedSvgSpritesBuilder = (mode) => {
-  return (cb) => {
-    const pipeline = src('src/core/assets/icons/**/*.svg')
-    if (mode === 'clean') {
-      pipeline
-        .pipe(cheerio({
-          run($) {
-            $('[fill]').removeAttr('fill');
-            $('[stroke]').attr('stroke', 'currentColor');
-            $('[style]').removeAttr('style');
-          },
-          parserOptions: { xmlMode: true },
-        }))
-        .pipe(plumber())
-    }
-
-    pipeline
-      .pipe(svgSpritesBuilder({
-        shape: {
-          dimension: {
-            maxWidth: 48,
-            maxHeight: 48,
-          },
-        },
-        mode: {
-          symbol: {
-            dest: mode,
-            inline: true,
-            sprite: './sprite.svg',
-          },
-        },
-      }))
-      .pipe(plumber())
-      .pipe(dest(`${stageDirname}/assets/icons/`))
-      .on('end', cb)
-      .on('error', cb)
-
-    return pipeline;
-  };
-};
-
 function buildCleanSvgSprites(cb) {
   return extendedSvgSpritesBuilder('clean')(cb);
 };
@@ -158,28 +158,22 @@ async function clean() {
 }
 
 function watching() {
-  watch(['src/app/index.js', 'src/core/**/*.js'], scripts)
-  watch(['src/app/index.+(scss|sass)', 'src/core/**/*.+(scss|sass)'], styles).on(
+  watch(['src/**/*.js'], scripts)
+  watch(['src/**/*.+(scss|sass)'], styles).on(
     'change',
     localServer.reload
   )
 
-  watch(['src/pages/*.html', 'src/core/**/*.html'], pages).on(
+  watch(['src/**/*.html'], pages).on(
     'change',
     localServer.reload
   )
 
-  watch(['src/pages/*.pug', 'src/core/**/*.pug'], pugMaker).on(
+  watch(['src/**/*.pug'], pugMaker).on(
     'change',
     localServer.reload
   )
 }
-
-function setDevStage(finishTask) {
-  stageDirname = 'dev';
-
-  finishTask();
-};
 
 function deploy() {
   return src(`./${stageDirname}/**/*`)
@@ -196,19 +190,16 @@ exports.copyResources = copyResources
 exports.buildSvgSprites = buildSvgSprites
 exports.deploy = deploy
 
-exports.default = series(
-  setDevStage,
-  parallel(
-    clean,
-    styles,
-    scripts,
-    copyResources,
-    buildSvgSprites(),
-    pugMaker,
-    pages,
-    upLocalServer,
-    watching,
-  ),
+exports.default = parallel(
+  clean,
+  styles,
+  scripts,
+  copyResources,
+  buildSvgSprites(),
+  pugMaker,
+  pages,
+  upLocalServer,
+  watching,
 );
 
 exports.build = series(

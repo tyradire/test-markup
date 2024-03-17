@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "npx gulp",
-    "build": "npx gulp build"
+    "build": "npx gulp build",
+    "deploy": "npx gulp build && npx gulp deploy "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spiks/bitrix-markup-stub.git"
   },
-  "author": "Liza",
+  "author": "spiks",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/spiks/bitrix-markup-stub/issues"
