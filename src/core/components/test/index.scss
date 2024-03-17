@@ -1,6 +1,0 @@
-@use '../../config/scss' as config;
-@use '../../lib/scss' as lib;
-
-h1 {
-  color: lib.$tokens-global-emerald-emerald-lighter-1;
-}

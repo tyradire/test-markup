@@ -1,5 +1,3 @@
-include ../core/components/test-2/index.pug
-
 doctype html
 html.layout(lang="ru")
   head
@@ -13,11 +11,6 @@ html.layout(lang="ru")
     block beforeWorkarea
 
     main.main.layout__main
-      include ../core/components/test/index.pug
-
-      +test2({
-        title: 'Hello again'
-      })
 
       block workarea
 
