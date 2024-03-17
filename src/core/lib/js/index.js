@@ -3,6 +3,30 @@
     window.app = {};
   }
 
+  const checkResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+
+    return Promise.reject(`Ошибка ${res.status}`);
+  };
+
+  const checkResponseSuccess = (res) => {
+    if (res && res.success) {
+      return res;
+    }
+
+    return Promise.reject(`Ответ не success: ${res}`);
+  };
+
+  const buildHttpClient = (baseUrl) => {
+    return (endpoint, options = {}) => {
+      return fetch(`${baseUrl}${endpoint}`, options)
+        .then(checkResponse)
+        .then(checkResponseSuccess);
+    };
+  };
+
   const setObserver = (element, handleObserve, manualConfig = {}) => {
     const config = {
       childList: true,
@@ -93,5 +117,8 @@
     buildComponentLogger,
     debounce,
     throttle,
+    checkResponse,
+    checkResponseSuccess,
+    buildHttpClient,
   };
 })(window);
