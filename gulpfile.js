@@ -122,7 +122,7 @@ function copyFonts() {
     .pipe(dest(`${stageDirname}//assets/fonts/`))
 }
 
-function copyImages() {
+function copyMedia() {
   return src('src/core/assets/media/**/*')
     .pipe(dest(`${stageDirname}/assets/media/`))
 }
@@ -149,7 +149,7 @@ function buildSvgSprites() {
 
 async function copyResources() {
   copyFonts()
-  copyImages()
+  copyMedia()
   copyVendors()
 }
 
@@ -163,13 +163,23 @@ function watching() {
     'change',
     localServer.reload
   )
-
   watch(['src/**/*.html'], pages).on(
     'change',
     localServer.reload
   )
-
   watch(['src/**/*.pug'], pugMaker).on(
+    'change',
+    localServer.reload
+  )
+  watch(['src/core/assets/media/**/*.*'], copyMedia).on(
+    'change',
+    localServer.reload
+  )
+  watch(['src/core/assets/icons/*.svg'], buildSvgSprites).on(
+    'change',
+    localServer.reload
+  )
+  watch(['src/core/vendors/**/*'], copyVendors).on(
     'change',
     localServer.reload
   )

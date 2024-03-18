@@ -1,0 +1,22 @@
+@use '../core/config/scss' as config;
+@use '../core/lib/scss' as lib;
+
+.layout {
+  display: flex;
+  min-height: 200vh;
+  flex-direction: column;
+
+  &__header {
+    position: sticky;
+    top: 0;
+  }
+
+
+  &__main {
+    flex-grow: 1;
+  }
+
+  &__footer {
+    margin-top: auto;
+  }
+}

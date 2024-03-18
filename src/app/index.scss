@@ -1,2 +1,25 @@
 @use '../core/config/scss' as config;
 @use '../core/lib/scss' as lib;
+@use '../core/ui/layout';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: config.$colors-white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: config.$colors-black;
+  }    
+}
+
+html {
+  scroll-behavior: smooth;
+}
