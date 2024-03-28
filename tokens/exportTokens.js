@@ -166,7 +166,7 @@ if (Object.keys(fileOutput).length > 0) {
 }
 
 fs.writeFileSync(
-  "./src/config/scss/_tokens.scss",
+  "../src/core/config/scss/_tokens.scss",
   variablesList.join('\n'),
   "utf-8",
 );
