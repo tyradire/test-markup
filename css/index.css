@@ -75,7 +75,7 @@
   width: 23px;
   height: 23px;
   display: block;
-  background-image: url("../../../assets/media/search.svg");
+  background-image: url("../assets/media/search.svg");
   background-repeat: no-repeat;
   background-size: contain;
   z-index: -1;
@@ -182,7 +182,7 @@
   width: 20px;
   height: 20px;
   display: block;
-  background-image: url("../../../assets/media/leaf.svg");
+  background-image: url("../assets/media/leaf.svg");
   background-repeat: no-repeat;
   background-size: 20px 20px;
 }
@@ -460,7 +460,7 @@
   height: 14px;
   border-radius: 50%;
   border: none;
-  background-image: url("../../../assets/media/cross.svg");
+  background-image: url("../assets/media/cross.svg");
 }
 
 .accordion {
@@ -472,7 +472,7 @@
   margin-top: 31px;
   margin-left: -2px;
   padding-bottom: 30px;
-  background-image: url("../../../assets/media/bg-leaf.png");
+  background-image: url("../assets/media/bg-leaf.png");
   background-repeat: no-repeat;
   background-position: -103px 51%;
   -webkit-transition: all 0.35s;
@@ -560,7 +560,7 @@
   display: block;
   width: 12px;
   height: 7px;
-  background-image: url("../../../assets/media/arrow.svg");
+  background-image: url("../assets/media/arrow.svg");
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
 }
@@ -571,7 +571,7 @@
 
 .accordion__item-input:checked + .accordion__item-check {
   background-color: #84D52C;
-  background-image: url("../../../assets/media/checked.svg");
+  background-image: url("../assets/media/checked.svg");
 }
 
 .accordion__item-label {
@@ -613,7 +613,7 @@
   position: relative;
   cursor: pointer;
   background-color: #353542;
-  background-image: url("../../../assets/media/sort.svg");
+  background-image: url("../assets/media/sort.svg");
   background-position: 50%;
   background-repeat: no-repeat;
   border-radius: 10px;
@@ -789,9 +789,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-column-gap: 10px;
-  -moz-column-gap: 10px;
-  column-gap: 10px;
+  -webkit-gap: 10px;
+  -moz-gap: 10px;
+  gap: 10px;
+  max-width: 1000px;
+  width: 100%;
+  flex-wrap: wrap;
   margin-left: 30px;
 }
 
