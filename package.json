@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spiks/bitrix-markup-stub.git"
+    "url": "git+https://github.com/tyradire/test-markup.git"
   },
   "author": "spiks",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spiks/bitrix-markup-stub/issues"
+    "url": "https://github.com/tyradire/test-markup.git/issues"
   },
-  "homepage": "https://github.com/spiks/bitrix-markup-stub#readme",
+  "homepage": "https://github.com/tyradire/test-markup.git#readme",
   "devDependencies": {
     "@babel/core": "7.22.11",
     "@babel/preset-env": "7.22.10",
@@ -28,6 +28,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-babel": "8.0.0",
     "gulp-cheerio": "^1.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-gh-pages": "^0.5.4",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-include": "^2.4.1",
@@ -36,7 +37,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-svg-sprite": "^2.0.3",
     "hygen": "^6.2.11",
+    "nouislider": "^15.8.0",
     "sass": "^1.66.1"
-  },
-  "dependencies": {}
+  }
 }

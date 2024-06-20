@@ -1,0 +1,18 @@
+main
+  div.filters
+    div.controls
+      include ../../components/range/range.pug
+      include ../../components/percentage/percentage.pug
+      +percentage('THC, %', 'thc')
+      +percentage('CBD, %', 'cbd')
+      include ../../components/radio/radio.pug
+      include ../../components/sort/sort.pug
+      include ../../components/modal/modal.pug
+    div.select
+      div.select__heading
+        p.select__results 1034,5 Results
+        include ../../components/tag/tag.pug
+        ul.select__tags
+    include ../../components/accordion/accordion.pug
+      
+

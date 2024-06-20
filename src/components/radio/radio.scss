@@ -1,0 +1,67 @@
+.radio {
+  border: none;
+  margin-top: 8px;
+  margin-left: 5px;
+
+  &__subtitle {
+    font-size: 16px;
+    line-height: 135%;
+    font-weight: 600;
+    color: #FFFFFF;
+  }
+  &__description {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 12px;
+      line-height: 135%;
+      font-weight: 400;
+      color: #959595;
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: flex-end;
+    column-gap: 7px;
+  }
+  &__input {
+    display: none;
+  }
+  &__button {
+    cursor: pointer;
+    width: 4px;
+    height: 20px;
+    display: block;
+    background-color: white;
+    margin-top: 2px;
+    transition: all .35s;
+
+    &_filled {
+      &:nth-child(2) {
+        background-color: #F0D561;
+      }
+      &:nth-child(4) {
+        background-color: #DED05E;
+      }
+      &:nth-child(6) {
+        background-color: #CECB5B;
+      }
+      &:nth-child(8) {
+        background-color: #BFC758;
+      }
+      &:nth-child(10) {
+        background-color: #ADC255;
+      }
+      &:nth-child(n+11) {
+        background-color: #297019;
+      }
+    }
+
+    &:nth-child(5n) {
+      height: 28px;
+    }
+  }
+}
+.radio__buttons {
+  display: flex;
+}

@@ -1,6 +1,8 @@
 @use '../core/config/scss' as config;
 @use '../core/lib/scss' as lib;
 @use '../core/ui/layout';
+@use '../components/components';
+@use '../sections/sections';
 
 * {
   margin: 0;
@@ -22,4 +24,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: #171722;
+  font-family: "Proxima Nova", sans-serif;
 }

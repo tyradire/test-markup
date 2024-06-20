@@ -1,0 +1,13 @@
+mixin badge(title, id, checked)
+  li.badge
+    input.badge__checkbox(
+      type="checkbox"
+      name=`${title}`
+      value=`${title}`
+      id=`${id}`
+      checked=checked
+    )
+    label.badge__label(
+      for=`${id}`
+    ) !{title}
+      

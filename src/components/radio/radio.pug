@@ -1,0 +1,11 @@
+fieldset.radio
+  p.radio__subtitle Nose
+  div.radio__buttons
+    -let count = 0;
+    while count < 10
+      - ++count
+        input.radio__input(type="radio", name="radio-nose", id=`radio-${count}`)
+        label.radio__button(for=`radio-${count}`, data-number=count)
+  div.radio__description
+    p min
+    p max

@@ -1,0 +1,11 @@
+include ../../components/badge/badge.pug
+
+header.header
+  include ../../components/logo/logo.pug
+
+  include ../../components/search/search.pug
+
+  -const badges = [{title: 'Buds', id: 'badge-1', checked: true}, {title: 'Edible', id: 'badge-2', checked: false}, {title: 'Non Edible', id: 'badge-3', checked: false}, {title: 'Concentrate', id: 'badge-4', checked: false}]
+    ul.badges
+      each badge in badges
+        +badge(badge.title, badge.id, badge.checked)

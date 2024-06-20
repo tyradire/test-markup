@@ -1,0 +1,29 @@
+.tag {
+  cursor: default;
+  user-select: none;
+  position: relative;
+  font-size: 12px;
+  line-height: 135%;
+  font-weight: 400;
+  padding: 6px 27px 6px 7px;
+  color: #FFFFFF;
+  background-color: #297019;
+  border-radius: 20px;
+  transition: all .35s;
+
+  &:has(.tag__close-btn:hover) {
+    opacity: .8;
+  }
+
+  &__close-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: none;
+    background-image: url('../../../assets/media/cross.svg');
+  }
+}

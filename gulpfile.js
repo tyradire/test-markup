@@ -18,6 +18,8 @@ const svgSpritesBuilder = require('gulp-svg-sprite');
 const cheerio = require('gulp-cheerio');
 const plumber = require('gulp-plumber');
 
+const concat = require('gulp-concat');
+
 const ghPages = require('gulp-gh-pages');
 
 const extendedSvgSpritesBuilder = (mode) => {
@@ -76,20 +78,21 @@ function upLocalServer() {
 }
 
 function styles() {
-  return src('src/app/index.+(scss|sass)')
+  return src(['src/app/index.+(scss|sass)', 'node_modules/nouislider/dist/nouislider.css'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       grid: true,
       overrideBrowserslist: ['last 10 version'],
     }))
     .pipe(gcmq())
+    .pipe(concat('index.css'))
     .pipe(dest(`${stageDirname}/css/`))
     .pipe(localServer.stream())
 }
 
 function scripts() {
-  return src('src/app/index.js')
-    .pipe(include({ hardFail: true }))
+  return src(['node_modules/nouislider/dist/nouislider.js', 'src/app/index.js'])
+    .pipe(concat('index.js'))
     .pipe(babel({
       presets: ['@babel/env'],
     }))

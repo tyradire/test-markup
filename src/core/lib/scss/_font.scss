@@ -2,10 +2,13 @@
   @font-face {
     font-family: $name;
     src: local("#{$name}"),
-    url("../assets/fonts/#{$name}/#{$fileName}.woff2") format("woff2"),
-    url("../assets/fonts/#{$name}/#{$fileName}.woff") format("woff");
+    url("../assets/fonts/#{$fileName}.woff") format("woff");
     font-weight: $weight;
     font-style: normal;
     font-display: swap;
   }
 }
+
+@include font(Proxima Nova, 400, ProximaNova-Regular);
+@include font(Proxima Nova, 600, ProximaNova-Semibold);
+@include font(Proxima Nova, 700, ProximaNova-Bold);

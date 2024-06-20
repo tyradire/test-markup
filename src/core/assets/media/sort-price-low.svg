@@ -1,0 +1,19 @@
+<svg width="24.000000" height="24.000000" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip1_717">
+			<rect id="Icon/ Arrow" rx="-0.500000" width="23.000000" height="23.000000" transform="translate(24.500000 24.500000) rotate(180.000000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="4.000004" y1="20.000000" x2="19.009899" y2="3.999997" id="paint_linear_5_183_0" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#6BAB2B"/>
+			<stop offset="1.000000" stop-color="#84D52C" stop-opacity="0.000000"/>
+		</linearGradient>
+	</defs>
+	<rect id="Icon/ Arrow" rx="-0.500000" width="23.000000" height="23.000000" transform="translate(24.500000 24.500000) rotate(180.000000)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip1_717)">
+		<path id="Vector" d="M13 4L13 16.17L18.6 10.57L20 12L12 20L4 12L5.4 10.57L11 16.17L11 4L13 4Z" fill="#84D52C" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M13 4L13 16.17L18.6 10.57L20 12L12 20L4 12L5.4 10.57L11 16.17L11 4L13 4Z" fill="url(#paint_linear_5_183_0)" fill-opacity="0.200000" fill-rule="nonzero"/>
+	</g>
+</svg>
