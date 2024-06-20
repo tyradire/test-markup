@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/index.css">
+  <title>Marketplace
+  </title>
+  <body>
+    <header class="header"><a href="https://spiks.tech/" target="blank" rel="nofollow"> <img class="logo" src="assets/media/logo.svg" alt="logo"></a>
+      <div class="search">
+        <input class="search__field" type="text" name="search" placeholder="Search for a product, flower, etc">
+      </div>
+      <ul class="badges">
+            <li class="badge">
+              <input class="badge__checkbox" type="checkbox" name="Buds" value="Buds" id="badge-1" checked>
+              <label class="badge__label" for="badge-1">Buds</label>
+            </li>
+            <li class="badge">
+              <input class="badge__checkbox" type="checkbox" name="Edible" value="Edible" id="badge-2">
+              <label class="badge__label" for="badge-2">Edible</label>
+            </li>
+            <li class="badge">
+              <input class="badge__checkbox" type="checkbox" name="Non Edible" value="Non Edible" id="badge-3">
+              <label class="badge__label" for="badge-3">Non Edible</label>
+            </li>
+            <li class="badge">
+              <input class="badge__checkbox" type="checkbox" name="Concentrate" value="Concentrate" id="badge-4">
+              <label class="badge__label" for="badge-4">Concentrate</label>
+            </li>
+      </ul>
+    </header>
+    <main>
+      <div class="filters">
+        <div class="controls">
+          <div class="range slider">
+            <p class="slider__subtitle">Price Range</p>
+            <div class="slider__slider" id="price-range"></div>
+            <div class="slider__values">
+              <input class="slider__value" id="price-range-min" type="text">
+              <input class="slider__value" id="price-range-max" type="text" readonly>
+            </div>
+          </div>
+                    <div class="percentage slider">
+                      <p class="slider__subtitle">THC, %</p>
+                      <div class="slider__slider" id="price-thc"></div>
+                      <div class="slider__values">
+                        <input class="slider__value" type="text" id="price-thc-value" readonly>
+                      </div>
+                    </div>
+                    <div class="percentage slider">
+                      <p class="slider__subtitle">CBD, %</p>
+                      <div class="slider__slider" id="price-cbd"></div>
+                      <div class="slider__values">
+                        <input class="slider__value" type="text" id="price-cbd-value" readonly>
+                      </div>
+                    </div>
+          <fieldset class="radio">
+            <p class="radio__subtitle">Nose</p>
+            <div class="radio__buttons">
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-1">
+              <label class="radio__button" for="radio-1" data-number="1"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-2">
+              <label class="radio__button" for="radio-2" data-number="2"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-3">
+              <label class="radio__button" for="radio-3" data-number="3"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-4">
+              <label class="radio__button" for="radio-4" data-number="4"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-5">
+              <label class="radio__button" for="radio-5" data-number="5"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-6">
+              <label class="radio__button" for="radio-6" data-number="6"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-7">
+              <label class="radio__button" for="radio-7" data-number="7"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-8">
+              <label class="radio__button" for="radio-8" data-number="8"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-9">
+              <label class="radio__button" for="radio-9" data-number="9"></label>
+              <input class="radio__input" type="radio" name="radio-nose" id="radio-10">
+              <label class="radio__button" for="radio-10" data-number="10"></label>
+            </div>
+            <div class="radio__description">
+              <p>min</p>
+              <p>max</p>
+            </div>
+          </fieldset>
+          <button class="sort"></button>
+          <div class="modal modal_opened">
+            <p class="modal__subtitle">Sort by:</p>
+            <ul class="modal__list"> 
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon" src="../../assets/media/sort-date.svg" alt="sort by new date"></div>
+                <p>Date (New first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon" src="../../assets/media/sort-date.svg" alt="sort by old date"></div>
+                <p>Date (Old first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon" src="../../assets/media/sort-price-high.svg" alt="sort by high price"></div>
+                <p>Price (High first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon" src="../../assets/media/sort-price-low.svg" alt="sort by low price"></div>
+                <p>Price (Low first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon-high" src="../../assets/media/sort-high.svg" alt="sort by thc high"><img class="modal__icon" src="../../assets/media/sort-thc.svg" alt="sort by thc"></div>
+                <p>Total THC (High first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon-low" src="../../assets/media/sort-low.svg" alt="sort by thc low"><img class="modal__icon" src="../../assets/media/sort-thc.svg" alt="sort by thc"></div>
+                <p>Total THC (Low first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon-high" src="../../assets/media/sort-high.svg" alt="sort by cbd high"><img class="modal__icon" src="../../assets/media/sort-cbd.svg" alt="sort by cbd"></div>
+                <p>Total CBD (High first)</p>
+              </li>
+              <li class="modal__item">
+                <div class="modal__icon-wrapper"><img class="modal__icon-low" src="../../assets/media/sort-low.svg" alt="sort by cbd low"><img class="modal__icon" src="../../assets/media/sort-cbd.svg" alt="sort by cbd"></div>
+                <p>Total CBD (Low first)</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="select">
+          <div class="select__heading">
+            <p class="select__results">1034,5 Results</p>
+            <ul class="select__tags"></ul>
+          </div>
+        </div>
+        <div class="accordion">
+          <div class="accordion__wrapper">
+            <div class="accordion__heading">
+              <input class="accordion__input" type="checkbox" id="list-1" data-list-number="1">
+              <label class="accordion__button" for="list-1">Classification</label>
+            </div>
+            <ul class="accordion__list accordion__list_opened">
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">100% Indica
+                  <input class="accordion__item-input" type="checkbox" checked data-accordion-number="1"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">100% Sativa
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="2"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">>50% Indica
+                  <input class="accordion__item-input" type="checkbox" checked data-accordion-number="3"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">>50% Sativa
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="4"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="accordion__wrapper">
+            <div class="accordion__heading">
+              <input class="accordion__input" type="checkbox" id="list-2" data-list-number="2">
+              <label class="accordion__button" for="list-2">Production Method</label>
+            </div>
+            <ul class="accordion__list accordion__list_opened">
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">Indoor
+                  <input class="accordion__item-input" type="checkbox" checked data-accordion-number="5"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Outdoor
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="6"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">Greenhouse
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="7"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Light Deprivation
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="8"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Mixed Light
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="9"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Other
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="10"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="accordion__wrapper">
+            <div class="accordion__heading">
+              <input class="accordion__input" type="checkbox" id="list-3" data-list-number="3">
+              <label class="accordion__button" for="list-3">Size</label>
+            </div>
+            <ul class="accordion__list accordion__list_opened">
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">Flower
+                  <input class="accordion__item-input" type="checkbox" checked data-accordion-number="11"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Pre-Roll Flower
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="12"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">Pre-Roll Infused
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="13"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Pre-Roll Leaf
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="14"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Shake
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="15"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Smalls
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="16"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item"> 
+                <label class="accordion__item-label">Trim
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="17"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Shake
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="18"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Keef
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="19"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+              <li class="accordion__item">
+                <label class="accordion__item-label">Fresh Frozen
+                  <input class="accordion__item-input" type="checkbox" data-accordion-number="20"><span class="accordion__item-check"></span>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
